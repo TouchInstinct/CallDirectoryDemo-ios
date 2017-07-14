@@ -12,21 +12,21 @@ class ViewController: UIViewController {
                        "79640982354",
                        "79982434663"]
         
-        let titles = ["Иванов Петр Петрович",
+        let labels = ["Иванов Петр Петрович",
                       "Сергеев Иван Николаевич",
                       "Николаев Андрей Михайлович"]
         
-        writeFileForCallDirectory(numbers: numbers, titles: titles)
+        writeFileForCallDirectory(numbers: numbers, labels: labels)
     }
     
-    fileprivate func writeFileForCallDirectory(numbers: [String], titles: [String]) {
+    fileprivate func writeFileForCallDirectory(numbers: [String], labels: [String]) {
         guard let fileUrl = FileManager.default
             .containerURL(forSecurityApplicationGroupIdentifier: "group.ru.touchin.TouchInApp")?
             .appendingPathComponent("contacts") else { return }
         
         var string = ""
-        for (number, title) in zip(numbers, titles) {
-            string += "\(number),\(title)\n"
+        for (number, label) in zip(numbers, labels) {
+            string += "\(number),\(label)\n"
         }
         
         try? string.write(to: fileUrl, atomically: true, encoding: .utf8)
